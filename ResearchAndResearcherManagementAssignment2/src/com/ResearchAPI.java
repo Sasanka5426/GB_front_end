@@ -45,11 +45,45 @@ public class ResearchAPI extends HttpServlet {
 	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Map paras = getParasmap(request);
+		
+		String output = resObj.updateResearch(paras.get("hidresIDSave").toString(),
+											paras.get("resTopic").toString(),
+											paras.get("area").toString(),
+											paras.get("status").toString(),
+											paras.get("progress").toString());
+		
+		response.getWriter().write(output);
+		
 	}
 
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Map paras = getParasmap(request);
+		
+		String output = resObj.deleteResearch(paras.get("resID").toString());
+		response.getWriter().write(output);
+		
+	}
+	
+	private static Map getParasmap(HttpServletRequest request) {
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			Scanner scanner = new Scanner(request.getInputStream(), "UTF-8");
+			String queryString = scanner.hasNext() ?
+									scanner.useDelimiter("\\A").next() : "";
+			scanner.close();
+			
+			String[] params = queryString.split("&");
+			for (String param:params) {
+				String[] p = param.split("=");
+				map.put(p[0], p[1]);
+			}
+		}catch(Exception e) {
+			
+		}
+		return map;
 	}
 
 }

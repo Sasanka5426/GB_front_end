@@ -37,6 +37,29 @@ $(document).on("click", "#btnSave", function(event){
 	
 });
 
+$(document).on("click", ".btnUpdate", function(event) 
+{
+	$("#hidItemIDSave").val($(this).data("resID"));
+	$("#resTopic").val($(this).closest("tr").find('td:eq(1)').text()); 
+	$("#area").val($(this).closest("tr").find('td:eq(2)').text()); 
+	$("#status").val($(this).closest("tr").find('td:eq(3)').text()); 
+	$("#progress").val($(this).closest("tr").find('td:eq(4)').text()); 
+});
+
+$(document).on("click", ".btnRemove", function(event) 
+{
+	$.ajax(
+	{
+		url : "ResearchAPI",
+		type : "DELETE",
+		data : "resID=" + $(this).data("resID"), 
+		dataType : "text",
+		complete : function(response, status) 
+		{
+			onItemDeleteComplete(response.responseText, status); 
+		}
+	});
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function validateResForm(){
@@ -92,4 +115,31 @@ function onResearchSaveComplete(response, status){
 	
 	$("#hidItemIDSave").val("");
 	$("#formResearch")[0].reset();
+}
+
+function onItemDeleteComplete(response, status)
+{
+	if (status == "success") 
+	{
+		var resultSet = JSON.parse(response); 
+		
+		if(resultSet.status.trim() == "success") 
+		{
+			$("#alertSuccess").text("Successfully deleted.");   
+			$("#alertSuccess").show(); 
+		}
+		else if(resultSet.status.trim() == "error") 
+		{
+			$("#alertError").text(resultSet.data);    
+			$("#alertError").show(); 
+		}
+	}else if(status == "error") 
+	{
+		  $("#alertError").text("Error while deleting.");   
+		  $("#alertError").show(); 
+	}else
+	{
+		$("#alertError").text("Unknown error while deleting..");   
+		$("#alertError").show(); 
+	}
 }

@@ -53,10 +53,16 @@ public class Research {
 			preparedStmt.execute();
 			con.close();
 			
-			output = "Reasearch added successfully";
+			//output = "Reasearch added successfully";
+			String newItems = readResearches();
+			output = "{\"status\":\"success\", \"data\": \"" +
+					newItems + "\"}";
+		
+		
 		}
 		catch(Exception e) {
-			output = "Error while adding new research";
+			//output = "Error while adding new research";
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting.\"}"; 
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -83,6 +89,8 @@ public class Research {
 					+ "<th>Name</th>"
 					+ "<th>Email</th>"
 					+ "<th>Phone</th>"
+					+ "<th>Update</th>"
+					+ "<th>Remove</th>"
 					+ "</tr>";
 					
 			
@@ -113,7 +121,11 @@ public class Research {
 				output += "<td>" +stkID+ "</td>";
 				output += "<td>" +name+ "</td>";
 				output += "<td>" +email+ "</td>";
-				output += "<td>" +phone+ "</td></tr>";
+				output += "<td>" +phone+ "</td>";
+				
+				//buttons
+				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secendary' data-itemid='"+resID+"'></td>"
+						+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='"+resID+"'>"+ "</td></tr>";
 				
 				
 			}
@@ -154,11 +166,15 @@ public class Research {
 			preparedStmt.execute();
 			con.close();
 			
-			output = "Updated successfully";
-			
+			//output = "Updated successfully";
+			String newItems = readResearches();
+			output = "{\"status\":\"success\", \"data\": \"" +
+					newItems + "\"}";
 		}
 		catch(Exception e) {
-			output = "Error while updating the record";
+			//output = "Error while updating the record";
+			output = "{\"status\":\"error\", \"data\": \"Error while updating.\"}"; 
+
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -204,10 +220,15 @@ public class Research {
 			
 			con.close();
 			
-			output = "Deleted successfully";
+			//output = "Deleted successfully";
+			String newItems = readResearches();
+			output = "{\"status\":\"success\", \"data\": \"" +
+					newItems + "\"}";
 		}
 		catch(Exception e) {
-			output = "Error while deleting the record";
+			//output = "Error while deleting the record";
+			output = "{\"status\":\"error\", \"data\": \"Error while deleting.\"}"; 
+
 			System.err.println(e.getMessage());
 		}
 		return output;

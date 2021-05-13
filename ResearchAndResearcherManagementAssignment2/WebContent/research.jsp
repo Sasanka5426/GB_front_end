@@ -19,7 +19,7 @@
 		</div>
 		
 		<div class="col-8">
-			<h1>Research Management</h1>
+			<center><h1>Research Management</h1></center>
 			
 			<form id="formResearch" name="formResearch">
 				Research Topic:
@@ -60,8 +60,8 @@
 	</div>
 	
 	<div class="row">
-		<center>
-		<div class="col">
+		
+		<div class="col-12">
 		<div id="divResearchGrid">
 			<%
 					Research resObj = new Research();
@@ -69,7 +69,7 @@
 			%>
 		</div>	
 		</div>
-		</center>
+		
 	</div>
 </div>
 
