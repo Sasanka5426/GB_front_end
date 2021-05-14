@@ -39,7 +39,7 @@ $(document).on("click", "#btnSave", function(event){
 
 $(document).on("click", ".btnUpdate", function(event) 
 {
-	$("#hidresIDSave").val($(this).data("itemid"));
+	$("#hidresIDSave").val($(this).data("resid"));
 	$("#resTopic").val($(this).closest("tr").find('td:eq(1)').text()); 
 	$("#area").val($(this).closest("tr").find('td:eq(2)').text()); 
 	$("#status").val($(this).closest("tr").find('td:eq(3)').text()); 
@@ -54,7 +54,7 @@ $(document).on("click", ".btnRemove", function(event)
 	{
 		url : "ResearchAPI",
 		type : "DELETE",
-		data : "resID=" + $(this).data("itemid"), 
+		data : "resID=" + $(this).data("resid"), 
 		dataType : "text",
 		complete : function(response, status) 
 		{
