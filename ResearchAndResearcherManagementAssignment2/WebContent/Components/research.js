@@ -116,7 +116,7 @@ function onResearchSaveComplete(response, status){
 	}
 	
 	$("#hidItemIDSave").val("");
-	$("#formResearch")[0].reset();
+	$("#formResearch")[0].reset(); 
 }
 
 function onItemDeleteComplete(response, status)

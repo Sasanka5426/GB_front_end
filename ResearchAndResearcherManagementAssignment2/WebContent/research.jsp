@@ -14,7 +14,7 @@
 
 <div class="cintainer-fluide">
 	<div class="row">
-		<div class="col-2">
+		<div class="col-md-2">
 		
 		</div>
 		
@@ -61,7 +61,7 @@
 	
 	<div class="row">
 		
-		<div class="col-12">
+		<div class="col-md-12">
 		<center>
 		<div id="divResearchGrid">
 			<%
