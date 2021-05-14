@@ -39,11 +39,13 @@ $(document).on("click", "#btnSave", function(event){
 
 $(document).on("click", ".btnUpdate", function(event) 
 {
-	$("#hidItemIDSave").val($(this).data("resID"));
+	$("#hidresIDSave").val($(this).data("itemid"));
 	$("#resTopic").val($(this).closest("tr").find('td:eq(1)').text()); 
 	$("#area").val($(this).closest("tr").find('td:eq(2)').text()); 
 	$("#status").val($(this).closest("tr").find('td:eq(3)').text()); 
-	$("#progress").val($(this).closest("tr").find('td:eq(4)').text()); 
+	$("#progress").val($(this).closest("tr").find('td:eq(4)').text());
+	//$("#rescherID").val($(this).closest("tr").find('td:eq(5)').text());
+	 
 });
 
 $(document).on("click", ".btnRemove", function(event) 
@@ -52,7 +54,7 @@ $(document).on("click", ".btnRemove", function(event)
 	{
 		url : "ResearchAPI",
 		type : "DELETE",
-		data : "resID=" + $(this).data("resID"), 
+		data : "resID=" + $(this).data("itemid"), 
 		dataType : "text",
 		complete : function(response, status) 
 		{
@@ -81,9 +83,9 @@ function validateResForm(){
 	
 	
 	//resID
-	if($("#rescherID").val().trim() == ""){
-		return "Insert Researcher ID.";
-	}
+	//if($("#rescherID").val().trim() == ""){
+	//	return "Insert Researcher ID.";
+	//}
 	
 	return true;
 }
